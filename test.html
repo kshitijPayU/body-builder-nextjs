@@ -1,0 +1,136 @@
+const tableRows = document.querySelectorAll("tbody tr");
+const paramsMapping = [];
+
+tableRows.forEach((row) => {
+  const param = row.querySelector("td:nth-child(1)").textContent.trim();
+  const description = row.querySelector("td:nth-child(2)").textContent.trim();
+  const example = row.querySelector("td:nth-child(3)").textContent.trim();
+
+  paramsMapping.push({ param, description, example });
+});
+
+console.log(paramsMapping);
+
+
+[
+  {
+    "param": "key",
+    "description": "This parameter is the unique merchant key provided by PayU for your merchant account. For more information, refer to Generate Merchant Key and Salt.",
+    "example": "8488225"
+  },
+  {
+    "param": "txnid",
+    "description": "This parameter is known as Transaction ID (or OrderID). It is the order reference number generated at your (Merchant’s) end. It is an identifier which you(merchant) would use to track a particular order. If a transaction using a particular transaction ID has already been successful at PayU, the usage of same Transaction ID again would fail. Hence, it is essential that you post us a unique transaction ID for every new transaction (Please make sure that the transaction ID being sent to us hasn’t been successful earlier. In case of this duplication, the customer would get an error of ‘duplicate Order ID’).",
+    "example": "fd3e847h2"
+  },
+  {
+    "param": "amount",
+    "description": "This parameter should contain the payment amount of the particular transaction. Note: Type-cast the amount to float type",
+    "example": "10"
+  },
+  {
+    "param": "productinfo",
+    "description": "This parameter should contain a brief product description. It should be a string describing the product (The description type is entirely your choice).",
+    "example": "T-shirt"
+  },
+  {
+    "param": "firstname",
+    "description": "This parameter must contain the first name of the customer.",
+    "example": "Ankit"
+  },
+  {
+    "param": "email",
+    "description": "This parameter must contain the email of the customer.",
+    "example": "test@gmail.com"
+  },
+  {
+    "param": "phone",
+    "description": "Merchant needs to take the customer’s GPay registered phone number and pass in this field. This field will be used for further mapping the customer VPA and initiate a collect request.",
+    "example": ""
+  },
+  {
+    "param": "pg",
+    "description": "This parameter contains the payment method to be enabled to collect payment from your customer. For the list of payment methods and their codes, refer to Payment Mode Codes. For Net Banking, use NB.",
+    "example": "NB"
+  },
+  {
+    "param": "bankcode",
+    "description": "Each payment option is identified with a unique bank code at PayU. The merchant must post this parameter with the corresponding payment option’s bank code value in it. For the list of bankcodes for Net Banking, refer to Net Banking Codes.",
+    "example": "AXIB"
+  },
+  {
+    "param": "surl",
+    "description": "The \"surl\" field is the success URL, which is the page PayU will redirect to if the transaction is successful. The merchant can handle the response at this URL after the customer is redirected there.",
+    "example": "https://apiplayground-response.herokuapp.com/"
+  },
+  {
+    "param": "furl",
+    "description": "The \"furl\" field is the Failure URL, which is the page PayU will redirect to if the transaction is failed. The merchant can handle the response at this URL after the customer is redirected there.",
+    "example": "https://apiplayground-response.herokuapp.com/"
+  },
+  {
+    "param": "hash",
+    "description": "The hash calculated by the merchant using the key and salt provided by PayU. The format for calculating the hash: sha512(key|txnid|amount|productinfo|firstname|email|udf1|udf2|udf3|udf4|udf5||||||SALT) For more information, refer to Generate Hash.",
+    "example": ""
+  },
+  {
+    "param": "lastname",
+    "description": "The last name of the customer.",
+    "example": ""
+  },
+  {
+    "param": "address1",
+    "description": "The first line of the billing address.",
+    "example": ""
+  },
+  {
+    "param": "address2",
+    "description": "The second line of the billing address.",
+    "example": ""
+  },
+  {
+    "param": "city",
+    "description": "The city where your customer resides as part of the billing address.",
+    "example": ""
+  },
+  {
+    "param": "state",
+    "description": "The state where your customer resides as part of the billing address,",
+    "example": ""
+  },
+  {
+    "param": "country",
+    "description": "The country where your customer resides.",
+    "example": ""
+  },
+  {
+    "param": "zipcode",
+    "description": "Billing address zip code is mandatory for the cardless EMI option.",
+    "example": ""
+  },
+  {
+    "param": "udf1",
+    "description": "This parameter has been made for you to keep any information corresponding to the transaction. Note: This parameter must contain buyer’s PAN number for Cross-Border Payments.",
+    "example": ""
+  },
+  {
+    "param": "udf2",
+    "description": "This parameter has been made for you to keep any information corresponding to the transaction.",
+    "example": ""
+  },
+  {
+    "param": "udf3",
+    "description": "This parameter has been made for you to keep any information corresponding to the transaction. Note: This parameter must contain buyer’s date of birth for Cross-Border Payments.",
+    "example": ""
+  },
+  {
+    "param": "udf4",
+    "description": "This parameter has been made for you to keep any information corresponding to the transaction.",
+    "example": ""
+  },
+  {
+    "param": "udf5",
+    "description": "This parameter has been made for you to keep any information corresponding to the transaction. Note: This parameter must contain invoice id/awb id of the transaction for Cross-Border Payments.",
+    "example": ""
+  }
+]
